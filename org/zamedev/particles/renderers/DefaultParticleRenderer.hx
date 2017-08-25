@@ -5,7 +5,10 @@ package org.zamedev.particles.renderers;
 #end
 
 class DefaultParticleRenderer {
-    public static function createInstance(manualUpdate : Bool = false) : ParticleSystemRenderer {
+    public static function createInstance(manualUpdate : Bool = false) : ParticleSystemRenderer
+	{
+		return new TilemapParticleRenderer();
+		
         #if html5
             #if dom
                 if (!manualUpdate && OpenGLView.isSupported) {

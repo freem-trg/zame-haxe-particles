@@ -31,7 +31,7 @@ class ParticleLoader {
 
     public static function loadTexture(textureImageData : String, textureFileName : String, path : String) : BitmapData {
         if (textureImageData == null || textureImageData.length == 0) {
-            return Assets.getBitmapData(Path.directory(path) + "/" + textureFileName);
+            return Assets.getBitmapData(textureFileName);
         }
 
         var data = Base64.decode(textureImageData);
