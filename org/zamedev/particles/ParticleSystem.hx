@@ -190,20 +190,16 @@ class ParticleSystem {
         p.startPos.x = sourcePosition.x / particleScaleX;
         p.startPos.y = sourcePosition.y / particleScaleY;
 
-        p.color = {
-            r: MathHelper.clamp(startColor.r + startColorVariance.r * MathHelper.rnd1to1()),
-            g: MathHelper.clamp(startColor.g + startColorVariance.g * MathHelper.rnd1to1()),
-            b: MathHelper.clamp(startColor.b + startColorVariance.b * MathHelper.rnd1to1()),
-            a: MathHelper.clamp(startColor.a + startColorVariance.a * MathHelper.rnd1to1()),
-        };
-
-        p.colorDelta = {
-            r: (MathHelper.clamp(finishColor.r + finishColorVariance.r * MathHelper.rnd1to1()) - p.color.r) / p.timeToLive,
-            g: (MathHelper.clamp(finishColor.g + finishColorVariance.g * MathHelper.rnd1to1()) - p.color.g) / p.timeToLive,
-            b: (MathHelper.clamp(finishColor.b + finishColorVariance.b * MathHelper.rnd1to1()) - p.color.b) / p.timeToLive,
-            a: (MathHelper.clamp(finishColor.a + finishColorVariance.a * MathHelper.rnd1to1()) - p.color.a) / p.timeToLive,
-        };
-
+		p.color.r = MathHelper.clamp(startColor.r + startColorVariance.r * MathHelper.rnd1to1());
+		p.color.g = MathHelper.clamp(startColor.g + startColorVariance.g * MathHelper.rnd1to1());
+		p.color.b = MathHelper.clamp(startColor.b + startColorVariance.b * MathHelper.rnd1to1());
+		p.color.a = MathHelper.clamp(startColor.a + startColorVariance.a * MathHelper.rnd1to1());
+		
+		p.colorDelta.r = (MathHelper.clamp(finishColor.r + finishColorVariance.r * MathHelper.rnd1to1()) - p.color.r) / p.timeToLive;
+		p.colorDelta.g = (MathHelper.clamp(finishColor.g + finishColorVariance.g * MathHelper.rnd1to1()) - p.color.g) / p.timeToLive;
+		p.colorDelta.b = (MathHelper.clamp(finishColor.b + finishColorVariance.b * MathHelper.rnd1to1()) - p.color.b) / p.timeToLive;
+		p.colorDelta.a = (MathHelper.clamp(finishColor.a + finishColorVariance.a * MathHelper.rnd1to1()) - p.color.a) / p.timeToLive;
+		
         p.particleSize = Math.max(0.0, startParticleSize + startParticleSizeVariance * MathHelper.rnd1to1());
 
         p.particleSizeDelta = (Math.max(

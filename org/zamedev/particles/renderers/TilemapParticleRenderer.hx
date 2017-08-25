@@ -14,12 +14,21 @@ import org.zamedev.particles.internal.TilemapExt;
     import lime.graphics.opengl.GL;
 #end
 
-typedef TilemapParticleRendererData = {
-    ps : ParticleSystem,
-    tilemap : TilemapExt,
-    tileList : Array<Tile>,
-    updated : Bool,
-};
+class TilemapParticleRendererData
+{
+    public var ps : ParticleSystem;
+    public var tilemap : TilemapExt;
+    public var tileList : Array<Tile>;
+    public var updated : Bool;
+	
+	public function new (ps : ParticleSystem, tilemap : TilemapExt, tileList : Array<Tile>, updated : Bool):Void
+	{
+		this.ps = ps;
+		this.tilemap = tilemap;
+		this.tileList = tileList;
+		this.updated = updated;
+	}
+}
 
 // Use -Dzameparticles_use_tile_visibility to enable tile pool
 // But actually this is slower than array manipulations (significantly on neko)
@@ -63,13 +72,7 @@ class TilemapParticleRenderer extends Sprite implements ParticleSystemRenderer {
             }
         #end
 
-        dataList.push({
-            ps: ps,
-            tilemap: tilemap,
-            tileList: tileList,
-            updated: false,
-        });
-
+        dataList.push(new TilemapParticleRendererData(ps, tilemap, tileList, false));
         return this;
     }
 

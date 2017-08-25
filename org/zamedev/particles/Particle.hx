@@ -22,11 +22,11 @@ class Particle {
     public var timeToLive : Float;
 
     public function new() : Void {
-        position = { x: 0.0, y: 0.0 };
-        direction = { x: 0.0, y: 0.0 };
-        startPos = { x: 0.0, y: 0.0 };
-        color = { r: 0.0, g: 0.0, b: 0.0, a: 0.0 };
-        colorDelta = { r: 0.0, g: 0.0, b: 0.0, a: 0.0 };
+        position = new ParticleVector();
+        direction = new ParticleVector();
+        startPos = new ParticleVector();
+        color = new ParticleColor();
+        colorDelta = new ParticleColor();
     }
 
     public function update(ps : ParticleSystem, dt : Float) : Bool {

@@ -75,37 +75,29 @@ class PexLapParticleLoader {
         return (node == null ? 0 : parseFloatString(node.get("value")));
     }
 
-    private static function parseVectorNode(node : Xml) : ParticleVector {
-        if (node == null) {
-            return {
-                x: 0.0,
-                y: 0.0,
-            };
-        }
+    private static function parseVectorNode(node : Xml) : ParticleVector
+	{
+		if (node == null)
+			return new ParticleVector();
 
-        return {
-            x: parseFloatString(node.get("x")),
-            y: parseFloatString(node.get("y")),
-        };
-    }
+		return new ParticleVector(
+			parseFloatString(node.get("x")),
+			parseFloatString(node.get("y"))
+		);
+	}
 
-    private static function parseColorNode(node : Xml) : ParticleColor {
-        if (node == null) {
-            return {
-                r: 0.0,
-                g: 0.0,
-                b: 0.0,
-                a: 0.0,
-            };
-        }
+	private static function parseColorNode(node : Xml) : ParticleColor
+	{
+		if (node == null)
+			return new ParticleColor();
 
-        return {
-            r: parseFloatString(node.get("red")),
-            g: parseFloatString(node.get("green")),
-            b: parseFloatString(node.get("blue")),
-            a: parseFloatString(node.get("alpha")),
-        };
-    }
+		return new ParticleColor(
+			parseFloatString(node.get("red")),
+			parseFloatString(node.get("green")),
+			parseFloatString(node.get("blue")),
+			parseFloatString(node.get("alpha"))
+		);
+	}
 
     private static function parseIntString(s : String) : Int {
         if (s == null) {

@@ -24,7 +24,7 @@ class JsonParticleLoader {
         ps.particleLifespanVariance = map["particleLifespanVariance"].asFloat();
         ps.speed = map["speed"].asFloat();
         ps.speedVariance = map["speedVariance"].asFloat();
-        ps.sourcePosition = { x: 0.0, y: 0.0 };
+        ps.sourcePosition = new ParticleVector();
         ps.sourcePositionVariance = asVector(map, "sourcePositionVariance");
         ps.angle = MathHelper.deg2rad(map["angle"].asFloat());
         ps.angleVariance = MathHelper.deg2rad(map["angleVariance"].asFloat());
@@ -60,18 +60,18 @@ class JsonParticleLoader {
     }
 
     private static function asVector(map : DynamicExt, prefix : String) : ParticleVector {
-        return {
-            x: map['${prefix}x'].asFloat(),
-            y: map['${prefix}y'].asFloat(),
-        };
+        return new ParticleVector(
+			map['${prefix}x'].asFloat(),
+			map['${prefix}y'].asFloat()
+		);
     }
 
     private static function asColor(map : DynamicExt, prefix : String) : ParticleColor {
-        return {
-            r: map['${prefix}Red'].asFloat(),
-            g: map['${prefix}Green'].asFloat(),
-            b: map['${prefix}Blue'].asFloat(),
-            a: map['${prefix}Alpha'].asFloat(),
-        };
+        return new ParticleColor(
+			map['${prefix}Red'].asFloat(),
+			map['${prefix}Green'].asFloat(),
+			map['${prefix}Blue'].asFloat(),
+			map['${prefix}Alpha'].asFloat()
+        );
     }
 }
